@@ -11,7 +11,7 @@
     <title>Boolzap</title>
 </head>
 
-<body class="bg-gradient-to-b from-sky-500 to-indigo-500 h-screen">
+<body class="bg-gradient-to-b from-green-200 to-green-400 h-screen">
     <div id="app" class="flex justify-center items-center h-full py-3">
         <div id="app-container" class="w-2/3 h-full flex">
             <div class="app-container-left w-1/2 flex flex-col">
@@ -22,8 +22,8 @@
                     </div>
 
                     <div class="top-icons flex gap-3 text-xs  text-gray-400">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <i class="fa-solid fa-paperclip"></i>
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
-                <div class="a-c-r-message-box flex-grow bg-slate-400 px-12 py-4">
+                <div class="a-c-r-message-box flex-grow px-12 py-4 bg-[url('/img/mine.jpg')]">
                     <div class="message from-user">
                         <span class="message-content">Ciao come stai?</span>
                         <span class="message-time"> 12:50 </span>
@@ -126,7 +126,8 @@
                         <span class="message-time"> 12:50 </span>
                     </div>
                 </div>
-                <div class="a-c-r-bottombar h-[35px]  bg-slate-200 flex items-center justify-around py-5">
+                <div
+                    class="a-c-r-bottombar h-[35px]  bg-slate-200 flex items-center justify-around py-5 border-l-2 border-l-gray-400">
                     <i class="fa-regular fa-face-smile text-gray-700"></i>
                     <input type="text" name="" id="" placeholder="Scrivi un messaggio...."
                         class="w-3/5 px-2 py-1 h-[30px] text-xs">
@@ -142,6 +143,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="contacts.js"></script>
     <script src="main.js"></script>
 </body>
 
