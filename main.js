@@ -36,7 +36,13 @@ createApp({
             setTimeout(() => {
                 let responseMessageObj = { ...this.responseMessage }
                 responseMessageObj.date = getCurrentDateTimeString()
-                responseMessageObj.message = this.getRandomString()
+                if (this.contacts[this.activeChat].name !== "Miriam") {
+                    responseMessageObj.message = this.getRandomString()
+                } else {
+                    responseMessageObj.message = ""
+                    responseMessageObj.media = "./img/guy.png"
+                }
+
                 this.contacts[this.activeChat].messages.push(responseMessageObj)
             }, randomResponseTime())
 

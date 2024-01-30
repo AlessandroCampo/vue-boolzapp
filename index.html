@@ -90,11 +90,12 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
-                <div class="a-c-r-message-box flex-grow px-12 py-4 bg-[url('/img/mine.jpg')]">
+                <div class="a-c-r-message-box flex-grow px-12 py-4 bg-[url('/img/mine.jpg')] overflow-y-auto">
                     <div class="message" v-for="(message, index) in contacts[activeChat].messages"
                         :class="message.status==='sent'? 'from-user':'from-others'">
                         <span class="message-content">{{message.message}}</span>
                         <span class="message-time"> {{message.date}} </span>
+                        <img :src="message.media" alt="" class="w-[100px]">
                         <i class="fa-regular fa-circle-xmark text-[10px]" @click="deleteMessage(index)"></i>
                     </div>
                 </div>
