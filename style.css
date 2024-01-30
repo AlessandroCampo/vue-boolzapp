@@ -48,10 +48,28 @@
 }
 
 .active {
-    background-color: lightcoral;
-    color: white;
+    background-color: #d9d9d9;
 }
 
 .message.from-user:hover i {
     display: block;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
