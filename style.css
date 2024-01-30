@@ -31,3 +31,8 @@
     background-color: wheat;
     margin-left: auto;
 }
+
+.active {
+    background-color: lightcoral;
+    color: white;
+}

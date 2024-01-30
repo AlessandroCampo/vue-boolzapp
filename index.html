@@ -17,8 +17,8 @@
             <div class="app-container-left w-1/2 flex flex-col">
                 <div class="a-c-l-topbar h-[35px]  bg-slate-200 flex items-center justify-between gap-5 px-2 py-5 ">
                     <div class="flex items-center text-xs gap-2">
-                        <img src="img/avatar_8.jpg" alt="" class="avatar">
-                        <span class="active-name"> Lorenzo </span>
+                        <img :src="user.propic" alt="" class="avatar">
+                        <span class="active-name"> {{user.name}} </span>
                     </div>
 
                     <div class="top-icons flex gap-3 text-xs  text-gray-400">
@@ -34,75 +34,37 @@
                         class="w-full px-2 py-1 text-[10px]">
                 </div>
                 <div class="a-c-l-chat-list flex-grow  bg-white">
-                    <div class="chat-left flex gap-3 py-2 px-4 border-b-2">
-                        <img src="img/avatar_8.jpg" alt="" class="avatar">
+                    <div class="chat-left flex gap-3 py-2 px-4 border-b-2 cursor-pointer"
+                        v-for="(contact, index) in contacts" :class="index === activeChat? 'active' : ''"
+                        @click="changeChat(index)">
+                        <img :src="contact.avatar" alt="" class="avatar">
                         <div class="user-info text-xs flex flex-col w-3/4">
                             <span class="user-name text-gray-950">
-                                Michele
+                                {{contact.name}}
                             </span>
                             <span class="last-seen text-[8px] text-gray-400">
-                                Ultimo messaggio inviato
+                                {{contact.messages[contact.messages.length - 1].message}}
                             </span>
                         </div>
                         <span class="last-message-time  text-gray-400 text-[8px]">
-                            12:00
+                            {{contact.messages[contact.messages.length - 1].date}}
                         </span>
                     </div>
-                    <div class="chat-left flex gap-3 py-2 px-4 border-b-2">
-                        <img src="img/avatar_8.jpg" alt="" class="avatar">
-                        <div class="user-info text-xs flex flex-col w-3/4">
-                            <span class="user-name text-gray-950">
-                                Michele
-                            </span>
-                            <span class="last-seen text-[8px] text-gray-400">
-                                Ultimo messaggio inviato
-                            </span>
-                        </div>
-                        <span class="last-message-time  text-gray-400 text-[8px]">
-                            12:00
-                        </span>
-                    </div>
-                    <div class="chat-left flex gap-3 py-2 px-4 border-b-2">
-                        <img src="img/avatar_8.jpg" alt="" class="avatar">
-                        <div class="user-info text-xs flex flex-col w-3/4">
-                            <span class="user-name text-gray-950">
-                                Michele
-                            </span>
-                            <span class="last-seen text-[8px] text-gray-400">
-                                Ultimo messaggio inviato
-                            </span>
-                        </div>
-                        <span class="last-message-time  text-gray-400 text-[8px]">
-                            12:00
-                        </span>
-                    </div>
-                    <div class="chat-left flex gap-3 py-2 px-4 border-b-2">
-                        <img src="img/avatar_8.jpg" alt="" class="avatar">
-                        <div class="user-info text-xs flex flex-col w-3/4">
-                            <span class="user-name text-gray-950">
-                                Michele
-                            </span>
-                            <span class="last-seen text-[8px] text-gray-400">
-                                Ultimo messaggio inviato
-                            </span>
-                        </div>
-                        <span class="last-message-time  text-gray-400 text-[8px]">
-                            12:00
-                        </span>
-                    </div>
+
+
 
                 </div>
             </div>
             <div class="app-container-right w-2/3  flex flex-col">
                 <div
                     class="a-c-r-topbar h-[35px]  bg-slate-200 flex items-center gap-5 px-2 py-5 border-l-2 border-l-gray-400">
-                    <img src="img/avatar_8.jpg" alt="" class="avatar">
+                    <img :src="contacts[activeChat].avatar" alt="" class="avatar">
                     <div class="user-info text-xs flex flex-col w-3/4">
                         <span class="user-name text-gray-950">
-                            Michele
+                            {{contacts[activeChat].name}}
                         </span>
                         <span class="last-seen text-[8px] text-gray-400">
-                            Ultimo accesso 20 minuti fa
+                            {{contacts[activeChat].status}}
                         </span>
                     </div>
                     <div class="top-icons flex gap-3 text-xs  text-gray-400">
@@ -112,26 +74,23 @@
                     </div>
                 </div>
                 <div class="a-c-r-message-box flex-grow px-12 py-4 bg-[url('/img/mine.jpg')]">
-                    <div class="message from-user">
-                        <span class="message-content">Ciao come stai?</span>
-                        <span class="message-time"> 12:50 </span>
-                    </div>
-                    <div class="message from-user">
-                        <span class="message-content">Ciao come stai?</span>
-                        <span class="message-time"> 12:50 </span>
-                    </div>
-
-                    <div class="message from-others">
-                        <span class="message-content">Ciao come stai?</span>
-                        <span class="message-time"> 12:50 </span>
+                    <div class="message" v-for="message in contacts[activeChat].messages"
+                        :class="message.status==='sent'? 'from-user':'from-others'">
+                        <span class="message-content">{{message.message}}</span>
+                        <span class="message-time"> {{message.date}} </span>
                     </div>
                 </div>
                 <div
                     class="a-c-r-bottombar h-[35px]  bg-slate-200 flex items-center justify-around py-5 border-l-2 border-l-gray-400">
                     <i class="fa-regular fa-face-smile text-gray-700"></i>
                     <input type="text" name="" id="" placeholder="Scrivi un messaggio...."
-                        class="w-3/5 px-2 py-1 h-[30px] text-xs">
-                    <i class="fa-solid fa-microphone  text-gray-700"></i>
+                        class="w-3/5 px-2 py-1 h-[30px] text-xs" v-model="newMessage.message"
+                        @keyup.enter="sendMessage">
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-microphone  text-gray-700"></i>
+                        <i class="fa-solid fa-paper-plane  text-gray-700" v-show="newMessage" @click="sendMessage"></i>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -141,7 +100,7 @@
 
 
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src=" https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="contacts.js"></script>
     <script src="main.js"></script>
