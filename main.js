@@ -57,6 +57,9 @@ createApp({
             let randomIndex = Math.floor(Math.random() * automaticResponsesItalian.length)
             console.log(randomIndex)
             return automaticResponsesItalian[randomIndex]
+        },
+        deleteMessage(index) {
+            this.contacts[this.activeChat].messages.splice(index, 1)
         }
     }
 }).mount('#app')
