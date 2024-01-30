@@ -9,6 +9,7 @@ createApp({
                 propic: "img/propic.png"
             },
             activeChat: 2,
+            searchString: "",
             newMessage: {
                 date: '',
                 message: '',

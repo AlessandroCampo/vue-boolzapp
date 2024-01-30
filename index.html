@@ -31,12 +31,29 @@
                     class="a-c-l-searchbar  bg-white  text-gray-400 px-4 py-1 text-xs flex items-center gap-3 border-b-2">
                     <i class="fa-solid fa-magnifying-glass mt-[2px]"></i>
                     <input type="text" name="" id="" placeholder="Cerca o inizia una nuova chat"
-                        class="w-full px-2 py-1 text-[10px]">
+                        class="w-full px-2 py-1 text-[10px]" v-model="searchString">
                 </div>
                 <div class="a-c-l-chat-list flex-grow  bg-white">
                     <div class="chat-left flex gap-3 py-2 px-4 border-b-2 cursor-pointer"
                         v-for="(contact, index) in contacts" :class="index === activeChat? 'active' : ''"
-                        @click="changeChat(index)">
+                        @click="changeChat(index)" v-if="!searchString">
+                        <img :src="contact.avatar" alt="" class="avatar">
+                        <div class="user-info text-xs flex flex-col w-3/4">
+                            <span class="user-name text-gray-950">
+                                {{contact.name}}
+                            </span>
+                            <span class="last-seen text-[8px] text-gray-400">
+                                {{contact.messages[contact.messages.length - 1].message}}
+                            </span>
+                        </div>
+                        <span class="last-message-time  text-gray-400 text-[8px]">
+                            {{contact.messages[contact.messages.length - 1].date}}
+                        </span>
+                    </div>
+                    <div class="chat-left flex gap-3 py-2 px-4 border-b-2 cursor-pointer"
+                        v-for="(contact, index) in contacts" :class="index === activeChat? 'active' : ''"
+                        @click="changeChat(index)"
+                        v-show="contact.name.toLowerCase().includes(searchString) || contact.name.toLowerCase().startsWith(searchString.toLowerCase())">
                         <img :src="contact.avatar" alt="" class="avatar">
                         <div class="user-info text-xs flex flex-col w-3/4">
                             <span class="user-name text-gray-950">
