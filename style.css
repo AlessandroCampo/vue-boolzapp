@@ -1,0 +1,23 @@
+#app-container {
+    border: 1px solid red;
+}
+
+.app-container-left {
+    outline: 1px solid green;
+}
+
+.a-c-r-topbar {
+    outline: 1px solid yellow;
+}
+
+.a-c-l-topbar {
+    outline: 1px solid yellow;
+}
+
+.a-c-r-bottombar {
+    outline: 1px solid yellow;
+}
+
+.a-c-l-chat-list {
+    outline: 1px solid violet;
+}
